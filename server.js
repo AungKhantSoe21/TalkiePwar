@@ -20,4 +20,4 @@ app.use('/', indexRouter);
 
 const port = 8000 || process.env.port;
 
-app.listen(port, () => console.log(`Server is running on port ${port}`))
+app.listen(port, () => console.log(`Server is running on port http://localhost:${port}`))
