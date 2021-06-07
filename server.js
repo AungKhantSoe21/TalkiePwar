@@ -5,22 +5,19 @@ const mongoose = require('mongoose');
 const bodyparser = require ('body-parser');
 
 // DB config
-const db = require('./config/db');
+const db = require('./routes/dbCreate');
 
 // connect to Mongo
-mongoose.connect(db.url, {
+db.mongoose.connect(db.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-    .then(() => {
-        console.log(`Connected to the database`)
-    })
-    .catch(err => {
-        console.log(`Cannot connect to the database`)
-    })
-
-
-
+.then(() => {
+    console.log(`Connected to the database`)
+})
+.catch(err => {
+    console.log(`Cannot connect to the database`)
+})
 
 // require controllers
 const userAuthRouter = require('./routes/userAuth'); 

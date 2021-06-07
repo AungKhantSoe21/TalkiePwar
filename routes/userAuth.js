@@ -2,18 +2,18 @@ const express = require('express');
 var router = express.Router();
 const md5 = require('md5');
 const suffix = 'sittwe'
+const db = require("../routes/dbCreate");
+const Users = db.users;
 
 // User Model
 const authModel = require('../model/auth');
+const User = require('../model/auth');
 
+// register user
 router.get('/register', (req, res, next) => {
     res.render('register', {
         error : ""
     });
-})
-
-router.get('/login', (req, res, next) => {
-    res.render('login');
 })
 
 router.post('/register', (req, res) => {
@@ -41,32 +41,24 @@ router.post('/register', (req, res) => {
             password2
          })
     } else {
-        // Validation passed
-        authModel.findOne({ phone_number: phone_number })
-        .then(user => {
-            console.log(user)
-            if(user) {
-                // User exits
-                errors.push({ msg: 'Phone number is already registered' })
-                res.render('register', { 
-                    errors,
-                    user_name,
-                    phone_number,
-                    password,
-                    password2
-                 })
-            } else {
-                const newUser = new user ({
-                    user_name,
-                    phone_number,
-                    password
-                })
-
-                console.log(newUser)
-            }
+        const user = new Users({    
+            user_name : user_name,
+            phone_number : phone_number,
+            password : md5(md5(password) + suffix)
+        });
+        user
+        .save(user)
+        .then(data => {
+          res.render('login')
+        })
+        .catch(err => {
+          res.redirect('/register')
         });
     }
-    
 });
+
+router.get('/login', (req, res, next) => {
+    res.render('login');
+})
 
 module.exports = router;
