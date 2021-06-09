@@ -321,8 +321,6 @@
   
   #frame #sidepanel #search {
     width: auto;
-    border-top: 1px solid #32465a;
-    border-bottom: 1px solid #32465a;
     font-weight: 300;
   }
   
@@ -402,8 +400,10 @@
   #frame #sidepanel #contacts ul li.contact {
     position: relative;
     padding: 10px 0 15px 0;
+    margin-top: 2px;
     font-size: 0.9em;
     cursor: pointer;
+    border-left: 5px solid #32465a;
   }
   
   @media screen and (max-width: 735px) {
@@ -413,12 +413,12 @@
   }
   
   #frame #sidepanel #contacts ul li.contact:hover {
-    background: #32465a;
+    background: #263747;
   }
   
   #frame #sidepanel #contacts ul li.contact.active {
-    background: #32465a;
-    border-right: 5px solid #435f7a;
+    background: #496886;
+    /* border-left: 5px solid #476581; */
   }
   
   #frame #sidepanel #contacts ul li.contact.active span.contact-status {
@@ -773,7 +773,7 @@
     width: 45px;
     height: 40px;
     border: none;
-    background: #ffffff;
+    background: #7ba7d3;
     color: black;
     cursor: pointer;
     font-size: 0.85em;
@@ -781,7 +781,7 @@
   }
   
   .attach:hover {
-    background: #c5d7e9;
+    background: #476581;
   }
   
   @media screen and (max-width: 735px) {
